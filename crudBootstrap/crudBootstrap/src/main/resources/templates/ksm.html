@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Exercise Bootstrap</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- eksternal css-->
+        <link href="style.css" rel="stylesheet" type="text/css">
+        
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    </head>
+    <body>
+        <div class="container" align="center">
+            <!-- start of header-->
+            <div class="container">
+                <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+                       <div class="container">
+                       <a class="navbar-brand" th:href="@{'/index/'}">MCCOC</a>
+                       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                         <span class="navbar-toggler-icon"></span>
+                       </button>
+                       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                         <div class="navbar-nav">
+                           <a class="nav-item nav-link active" th:href="@{'/index/'}">Logout<span class="sr-only">(current)</span></a>
+                           <a class="nav-item nav-link" href="#test">About</a>
+                           <a class="nav-item nav-link" href="#idport">Portfolio</a>
+                           <a class="nav-item nav-link" href="#">Contact/Help</a>
+                         </div>
+                       </div>
+                       </div>
+               </nav>
+            </div>    
+            <!-- end of header-->
+           
+        </div>
+        
+        <!-- start of welcome-->
+        <div class="jumbotron jumbotron-fluid" >
+                <div class="container text-center">
+<!--                  <h1 class="display-4" style="padding: 100px">Apnan Juanda</h1>-->
+                  <h1 class="display-4" style="padding: 100px">Selamat datang di Aplikasi Kartu Studi Mahasiswa</h1>
+                </div>
+        </div>
+        <!-- end of welcome-->
+        
+        <!-- start of about-->
+            <section id="about" class="about" style="margin-bottom: 100px">
+                <div class="container">
+                  <div class="row text-center mb-4">
+                    <div class="col">
+                      <h2>About</h2>
+                    </div>
+                  </div>
+
+                  <div class="row justify-content-center">
+                    <div class="col-md-5">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                    <div class="col-md-5">
+                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
+                        ut aliquip ex ea commodo consequat.</p>
+                    </div>
+                  </div>
+                </div>
+            </section>
+        
+         <!-- end of about-->
+         
+          <!--start of datatables-->
+            <div class="container" >
+                <div align="right" style="margin-bottom: 25px">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      Add New Data
+                    </button>
+                </div>
+<!--                border="1" cellpadding="10"-->
+                <table align="center"  style="text-align: left" class="table" id="dt">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Name</th>
+                            <th>Actions</th> 
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+<!--                            <td th:text="${as.id}"></td>
+                            <td th:text="${as.name}"></td>
+                            <td>
+                                <a th:href="@{'/klik/' + ${as.id}}">Detail</a>
+                                &nbsp;
+                                <a th:href="@{'/delete/' + ${as.id}}">Delete</a>
+                            </td>-->
+                            <td>1</td>
+                            <td>Asia</td>
+                            <td>
+                                <a href="">Detail</a>
+                                &nbsp;
+                                <a href="">Delete</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Eropa</td>
+                             <td>
+                                <a href="">Detail</a>
+                                &nbsp;
+                                <a href="">Delete</a>
+                            </td>
+                        </tr>
+                       
+                    </tbody>      
+                </table>
+            </div>
+            <!--end of datatables-->
+            
+         <!-- start of Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Masukkan data baru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form>
+                <div class="modal-body">
+                    <label style="margin-top: 15px">Region ID :</label> <br>
+                      <input type="text" id="textId" class="form-control" required="required">
+                      <label style="margin-top: 15px">Region Name :</label>
+                      <input type="text" id="textName" class="form-control" required="required">       
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                 <input type="submit" value="Save" class="btn btn-success" style="margin: 10px">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- end of Modal -->
+        
+        <!-- start of footer-->
+        <footer class="bg-primary text-white">
+            <div class="container">
+              <div class="row text-center">
+                <div class="col pt-3">
+                  <p>Copyright© Apnan & Jessi</p>
+                </div>
+              </div>
+            </div>
+        </footer>
+        
+         <!-- end of footer-->
+        
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        <!-- JS, Popper.js, and jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+         <!-- JS datatables -->   
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+        
+        <script>
+          $(document).ready( function () {
+             $('#dt').DataTable();
+          } );
+        </script>
+    </body>
+</html>
