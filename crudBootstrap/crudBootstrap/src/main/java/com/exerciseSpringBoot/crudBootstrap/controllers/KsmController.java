@@ -26,6 +26,24 @@ public class KsmController {
         return "ksm";
     }
     
+    //Menuju ke laman login
+     @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
     
+	//mengecek isi dari form login
+    @RequestMapping(value="/check",method=RequestMethod.POST )
+    public String checkLogin(@ModelAttribute(name="loginForm") LoginForm loginForm, Model model){
+        
+        String username = loginForm.getUsername();
+        String password = loginForm.getPassword();
+        
+        if("admin".equals(username) && "admin".equals(password)){
+            return "ksm";
+        }
+        model.addAttribute("invalid",true);
+        return "login";
+    }
     
 }
