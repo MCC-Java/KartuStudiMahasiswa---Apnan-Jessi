@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Page KSM</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- eksternal css-->
+        <link href="style.css" rel="stylesheet" type="text/css">
+
+        <!-- CSS only -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.css">
+    </head>
+    <body>
+        <div class="container" align="center">
+            <!-- start of header-->
+            <div class="container">
+                <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+                    <div class="container">
+                        <a class="navbar-brand" th:href="@{'/index/'}">MCCOC</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav">
+                                <a class="nav-item nav-link" th:href="@{'/ksm/'+${mahasiswa.nim}}">Kartu Studi Mahasiswa</a>
+                                <a class="nav-item nav-link active" >Jadwal MataKuliah</a>
+                                <a class="nav-item nav-link" th:href="@{'/index/'}">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>    
+            <!-- end of header-->
+
+        </div>
+
+        <!-- start of welcome-->
+        <div class="jumbotron jumbotron-fluid" >
+            <center>
+                <br><br>
+                <h1><b>Jadwal MataKuliah yang bisa anda ambil</b></h1><br>
+            </center>
+            
+        </div>
+        <!-- end of welcome-->
+
+
+        <!--start of datatables-->
+        <div class="container" >
+            <table align="center"  style="text-align: left" class="table" id="dt">
+                <thead>
+                    <tr>
+                        <th>Kode</th>
+                        <th>Nama</th>
+                        <th>Ruang</th>
+                        <th>Hari</th>
+                        <th>Jam</th>
+                        <th>SKS</th>
+                        <th>Pengajar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="matkull : ${matkulll}" method="GET">
+                        <td th:text="${matkull.kode}"></td>
+                        <td th:text="${matkull.nama}"></td>
+                        <td th:text="${matkull.nama}"></td>
+                        <td th:text="${matkull.hari}"></td>
+                        <td th:text="${matkull.jam}"></td>
+                        <td th:text="${matkull.sks}"></td>
+                        <td th:text="${matkull.dosen}"></td>
+                       
+                    </tr>
+                </tbody>
+            </table>
+            <br><br>
+            <br><br>
+        </div>
+        <!--end of datatables-->
+
+        <!-- start of Modal -->
+    <!-- end of Modal -->
+
+    <!-- start of footer-->
+    <footer class="bg-primary text-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col pt-3">
+                    <p>Copyright© Apnan & Jessi</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- end of footer-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- JS datatables -->   
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
+
+    <!--keperluan datatables-->
+    <script>
+        $(document).ready( function () {
+        $('#dt').DataTable();
+        } );
+
+    </script>
+    <!--keperluan datatables-->
+
+</body>
+</html>
