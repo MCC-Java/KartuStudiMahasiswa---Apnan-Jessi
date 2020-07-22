@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface MatkulRepository extends JpaRepository<Matkul, String> {
 
+    @Modifying
     @Query(value = "SELECT * FROM matkul INNER JOIN kartustudi ON matkul.kode=kartustudi.kodematkul WHERE kartustudi.nim = ?1", nativeQuery = true)
     List<Matkul> findByNIM(String nim);
     

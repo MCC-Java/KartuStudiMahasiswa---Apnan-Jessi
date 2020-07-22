@@ -80,7 +80,7 @@ and open the template in the editor.
                     <tr th:each="matkull : ${matkuls}" method="GET">
                         <td th:text="${matkull.kode}"></td>
                         <td th:text="${matkull.nama}"></td>
-                        <td th:text="${matkull.nama}"></td>
+                        <td th:text="${matkull.ruang}"></td>
                         <td th:text="${matkull.hari}"></td>
                         <td th:text="${matkull.jam}"></td>
                         <td th:text="${matkull.sks}"></td>
@@ -109,7 +109,12 @@ and open the template in the editor.
                     </div>
                     <form th:action="@{'/savedata/'+${mahasiswa.nim}}" th:object="${matkul}" style=" padding: 10px 10px 10px 10px" method="post" >
                         <label>Kode Matkul</label>
-                        <input type="text" id="textId" class="form-control" th:field="*{kode}">
+                        <div class="form-group blu-margin" th:object="${matkul}">
+                            <select class="form-control" id="dropOperator" th:field="*{kode}">
+                                <option value="0">Pilih Matakuliah</option>
+                                <option th:each="matkull : ${matkulll}" th:value="${matkull.kode}" th:text="${matkull.kode}"></option>
+                            </select>
+                        </div>
                         <input type="submit" value="Save" th:attr="onclick=|check('${error}','${mahasiswa.nim}');|">
                         <br><br>
                     </form>

@@ -5,6 +5,7 @@
  */
 package com.exerciseSpringBoot.crudBootstrap.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -62,6 +63,7 @@ public class Matkul implements Serializable {
     @Basic(optional = false)
     @Column(name = "dosen")
     private String dosen;
+    @JsonIgnore
     @JoinTable(name = "kartustudi", joinColumns = {
         @JoinColumn(name = "kodematkul", referencedColumnName = "kode")}, inverseJoinColumns = {
         @JoinColumn(name = "nim", referencedColumnName = "nim")})

@@ -46,9 +46,15 @@ and open the template in the editor.
                 <h1><b>Daftar Matakuliah tersedia</b></h1><br>
             </center>
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 42%">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="margin-left: 38%">
                 Insert Mata Kuliah
             </button>
+            <button type="button"  class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal2">
+                Update Mata Kuliah
+            </button>
+
+
+
 
         </div>
         <!-- end of welcome-->
@@ -90,7 +96,7 @@ and open the template in the editor.
             </div>
         </div>
         <!-- end of Modal -->
-         <!-- start of Modal -->
+        <!-- start of Modal -->
         <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -101,10 +107,15 @@ and open the template in the editor.
                         </button>
                     </div>
                     <form th:action="@{/savematkul}" th:object="${matkul}" style=" padding: 10px 10px 10px 10px" method="post" >
-                       <label>Kode Matkul</label>
-                        <input type="text" id="textId" class="form-control" th:field="*{kode}" required>
+                        <label>Kode Matkul</label>
+                        <div class="form-group blu-margin" th:object="${matkul}">
+                            <select class="form-control" id="dropOperator" th:field="*{kode}">
+                                <option value="0">Pilih Matakuliah</option>
+                                <option th:each="matkull : ${matkulll}" th:value="${matkull.kode}" th:text="${matkull.kode}"></option>
+                            </select>
+                        </div>
                         <label>Nama Matkul</label>
-                        <input type="text" id="textId" class="form-control" th:field="*{nama}" required>
+                        <input type="text" id="textId" class="form-control" th:field="*{nama}"  required>
                         <label>Ruang</label>
                         <input type="text" id="textId" class="form-control" th:field="*{ruang}" required>
                         <label>Hari</label>
@@ -117,6 +128,7 @@ and open the template in the editor.
                         <input type="text" id="textId" class="form-control" th:field="*{dosen}" required>
                         <input type="submit" value="Save">
                         <br><br>
+                        <p>*Update Data akan menyebabkan matakuliah terhapus dari KSM mahasiswa</p>
                         <p th:if="${error}" class="error">Gagal Insert, Terjadi Error</p>
 
                     </form>
@@ -146,19 +158,19 @@ and open the template in the editor.
 
                 <tbody>
                     <tr th:each="matkull : ${matkulll}" method="GET">
+
                         <td th:text="${matkull.kode}"></td>
                         <td th:text="${matkull.nama}"></td>
-                        <td th:text="${matkull.nama}"></td>
+                        <td th:text="${matkull.ruang}"></td>
                         <td th:text="${matkull.hari}"></td>
                         <td th:text="${matkull.jam}"></td>
                         <td th:text="${matkull.sks}"></td>
                         <td th:text="${matkull.dosen}"></td>
                         <td>
                             <!-- Button trigger modal -->
-                            <button type="button"  data-toggle="modal" data-target="#exampleModal2">
-                               Update
-                            </button>
+
                             <button th:attr="onclick=|fungsi('${matkull.kode}');|">Delete</button>
+
                         </td>
                     </tr>
                 </tbody>
@@ -236,6 +248,7 @@ and open the template in the editor.
             $(document).ready( function () {
             $('#dt').DataTable();
             } );
+
 
         </script>
         <!--keperluan datatables-->
